@@ -15,8 +15,8 @@ v1 scope: single trip owner, no live multi-user collaboration.
 ## Monorepo layout
 
 ```
-client/     Vite + React frontend
-server/     Node.js backend (Express)
+frontend/   Vite + React frontend
+backend/    Node.js backend (Express), entry point: src/server.ts
 ```
 
 Run everything from the repo root. Each sub-project has its own `package.json`.
@@ -25,22 +25,22 @@ Run everything from the repo root. Each sub-project has its own `package.json`.
 
 ```bash
 # Install all deps (run once after cloning)
-npm install --prefix client && npm install --prefix server
+npm install --prefix frontend && npm install --prefix backend
 
 # Dev (run in separate terminals)
-npm run dev --prefix client      # Vite dev server
-npm run dev --prefix server      # ts-node-dev or nodemon
+npm run dev --prefix frontend    # Vite dev server
+npm run dev --prefix backend     # ts-node-dev
 
 # Tests
-npm test --prefix server         # Jest (backend)
-npm test --prefix client         # Vitest (frontend)
+npm test --prefix backend        # Jest (backend)
+npm test --prefix frontend       # Vitest (frontend)
 
 # Single test file
-npm test --prefix server -- --testPathPattern=clustering
+npm test --prefix backend -- --testPathPattern=clustering
 
 # Type-check
-npm run typecheck --prefix client
-npm run typecheck --prefix server
+npm run typecheck --prefix frontend
+npm run typecheck --prefix backend
 ```
 
 ---
